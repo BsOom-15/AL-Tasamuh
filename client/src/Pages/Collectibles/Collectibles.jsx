@@ -4,9 +4,10 @@ import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../Components/Modal/Modal";
-import { VITE_API_URL } from "../../../config";
 
 const Collectibles = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
@@ -16,7 +17,7 @@ const Collectibles = () => {
 
  useEffect(() => {
   axios
-    .get(`${VITE_API_URL}/api/collectibles?page=${page}&limit=12`)
+    .get(`${API_URL}/api/collectibles?page=${page}&limit=12`)
     .then(res => {
       setItems(Array.isArray(res.data) ? res.data : res.data.data || []);
     })
@@ -43,7 +44,7 @@ const Collectibles = () => {
     it.image
       ? it.image.startsWith("http")
         ? it.image
-        : `${VITE_API_URL}${it.image.replace(/^\/+/, "")}`
+        : `${API_URL}${it.image.replace(/^\/+/, "")}`
       : "/default-collectible.jpg"
   }
   alt={it.title}

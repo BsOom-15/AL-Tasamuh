@@ -5,19 +5,23 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import FormFileUpload from "../../Components/Modal/FileUploadForm";
 import Loader from "../../Components/Modal/Loaders";
-import { VITE_API_URL } from "../../../config";
+
+
 
 const getImageUrl = (imgPath) => {
   if (!imgPath || typeof imgPath !== "string") return "";
   imgPath = imgPath.trim();
   if (imgPath.startsWith("data:")) return imgPath;
   if (imgPath.startsWith("http://") || imgPath.startsWith("https://")) return imgPath;
-  if (imgPath.startsWith("/uploads/")) return `${VITE_API_URL}${imgPath}`;
-  if (imgPath.includes("uploads/")) return `${VITE_API_URL}/${imgPath.replace(/^\/+/,'')}`;
-  return `${VITE_API_URL}/uploads/${imgPath}`;
+  if (imgPath.startsWith("/uploads/")) return `${API_URL}${imgPath}`;
+  if (imgPath.includes("uploads/")) return `${API_URL}/${imgPath.replace(/^\/+/,'')}`;
+  return `${API_URL}/uploads/${imgPath}`;
 };
 
 const AboutAdmin = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [about, setAbout] = useState(null);
   const [loading, setLoading] = useState(true);
   // Header
@@ -51,7 +55,7 @@ const AboutAdmin = () => {
     const fetchAbout = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`${VITE_API_URL}/api/about`);
+        const res = await axios.get(`${API_URL}/api/about`);
         if (res?.data) {
           const data = res.data;
           setAbout(data);
@@ -78,7 +82,7 @@ const AboutAdmin = () => {
   // Persist
   const persistAbout = async (payload) => {
     try {
-      const res = await axios.put(`${VITE_API_URL}/api/about/${about._id}`, payload);
+      const res = await axios.put(`${API_URL}/api/about/${about._id}`, payload);
       setAbout(res.data);
       toast.success("Saved successfully");
     } catch {
@@ -160,7 +164,7 @@ const AboutAdmin = () => {
       const formData = new FormData();
       formData.append("image", founderImage);
       try {
-        const res = await axios.post(`${VITE_API_URL}/api/about/upload-founder-image`, formData, {
+        const res = await axios.post(`${API_URL}/api/about/upload-founder-image`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         img = res.data.url;

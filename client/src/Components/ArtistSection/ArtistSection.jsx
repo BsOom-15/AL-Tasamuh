@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ArtistSection.css';
 import { Link } from 'react-router-dom';
-import Modal from '../../Components/Modal/Modal'; // استدعاء المودال نفسه
-import { VITE_API_URL } from '../../../config';
+import Modal from '../../Components/Modal/Modal';
 
 const ArtistSection = () => {
   const [artist, setArtist] = useState(null);
@@ -11,8 +10,10 @@ const ArtistSection = () => {
   const [openModal, setOpenModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    axios.get(`${VITE_API_URL}/api/artists`)
+    axios.get(`${API_URL}/api/artists`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
           setArtist(res.data[0]);
@@ -23,12 +24,12 @@ const ArtistSection = () => {
 
   const getImageUrl = (imgPath) => {
     if (!imgPath) return "";
-    return imgPath.startsWith("http") ? imgPath : `${VITE_API_URL}${imgPath}`;
+    return imgPath.startsWith("http") ? imgPath : `${API_URL}${imgPath}`;
   };
 
   const handleOpenModal = async (artwork, index) => {
     try {
-      const res = await axios.get(`${VITE_API_URL}/api/artworks/${artwork._id}`);
+      const res = await axios.get(`${API_URL}/api/artworks/${artwork._id}`);
       const fullArtwork = res.data; // populated artwork
       setSelectedArtwork(fullArtwork);
       setCurrentIndex(index);

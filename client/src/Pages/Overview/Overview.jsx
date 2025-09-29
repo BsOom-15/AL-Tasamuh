@@ -15,10 +15,11 @@ import {
     PinterestShareButton,
     TwitterShareButton,
 } from "react-share";
-import Loader from "../../Components/Modal/Loaders";
-import { VITE_API_URL } from '../../../config';
+import Loader from "../../Components/Modal/Loaders"
 
 const Overview = () => {
+
+    const API_URL = import.meta.env.VITE_API_URL;
     const [view, setView] = useState('overview');
     const [isOpen, setIsOpen] = useState(false);
     const [selectedArtwork, setSelectedArtwork] = useState(null);
@@ -33,7 +34,7 @@ const Overview = () => {
     useEffect(() => {
         const fetchExhibition = async () => {
             try {
-                const res = await axios.get(`${VITE_API_URL}/api/exhibitions/${id}`);
+                const res = await axios.get(`${API_URL}/api/exhibitions/${id}`);
 
                 setExhibition(res.data);
             } catch (err) {
@@ -47,7 +48,7 @@ const Overview = () => {
     const handleViewWorks = async () => {
         if (!exhibition?.artist?._id) return;
         try {
-            const res = await axios.get(`${VITE_API_URL}/api/artworks?artistId=${exhibition.artist._id}`);
+            const res = await axios.get(`${API_URL}/api/artworks?artistId=${exhibition.artist._id}`);
 
             setAllWorks(Array.isArray(res.data.data) ? res.data.data : []);
             setView('work');

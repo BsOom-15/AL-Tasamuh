@@ -3,9 +3,11 @@ import './Artwork.css';
 import CircleIcon from '@mui/icons-material/Circle';
 import Modal from '../../Components/Modal/Modal';
 import axios from 'axios';
-import { VITE_API_URL } from '../../../config';
 
 const Artwork = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [artworks, setArtworks] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [selectedArtwork, setSelectedArtwork] = useState(null);
@@ -16,7 +18,7 @@ const Artwork = () => {
     if (!imgPath) return "/default-artwork.jpg";
     return imgPath.startsWith("http")
       ? imgPath
-      : `${VITE_API_URL}/${imgPath.startsWith("uploads/") ? imgPath : "uploads/" + imgPath}`;
+      : `${API_URL}/${imgPath.startsWith("uploads/") ? imgPath : "uploads/" + imgPath}`;
   };
 
   // Shuffle function (للعرض العشوائي)
@@ -26,7 +28,7 @@ const Artwork = () => {
 
   // Fetch artworks from backend
   useEffect(() => {
-    axios.get(`${VITE_API_URL}/api/artworks`)
+    axios.get(`${API_URL}/api/artworks`)
       .then(res => {
         if (res.data && res.data.data) {
           let items = res.data.data;
@@ -44,7 +46,7 @@ const Artwork = () => {
 
   const handleOpenModal = async (artwork) => {
     try {
-      const res = await axios.get(`${VITE_API_URL}/api/artworks/${artwork._id}`);
+      const res = await axios.get(`${API_URL}/api/artworks/${artwork._id}`);
       const fullArtwork = res.data; 
       const index = artworks.findIndex(a => a._id === artwork._id);
 

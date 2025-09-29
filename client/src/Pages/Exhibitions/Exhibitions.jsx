@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './Exhibitions.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { VITE_API_URL } from '../../../config';
 
 const Exhibitions = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
   const [exhibitions, setExhibitions] = useState([]);
 
 const fetchExhibitions = async () => {
   try {
-    const res = await axios.get(`${VITE_API_URL}/api/exhibitions`);
+    const res = await axios.get(`${API_URL}/api/exhibitions`);
     setExhibitions(Array.isArray(res.data.data) ? res.data.data : []);
   } catch (err) {
     console.error('Error fetching exhibitions:', err);
@@ -44,7 +45,7 @@ const fetchExhibitions = async () => {
     exhibition.cover
       ? exhibition.cover.startsWith('http')
         ? exhibition.cover
-        : `${VITE_API_URL}${exhibition.cover.replace(/^\/+/, '')}`
+        : `${API_URL}${exhibition.cover.replace(/^\/+/, '')}`
       : 'https://via.placeholder.com/300x200'
   }
   alt={exhibition.title}

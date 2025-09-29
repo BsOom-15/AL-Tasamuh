@@ -3,7 +3,6 @@ import CircleIcon from "@mui/icons-material/Circle";
 import Modal from "../../Components/Modal/Modal";
 import axios from "axios";
 import "./FilterCategory.css";
-import { VITE_API_URL } from "../../../config";
 
 const FilterCategory = ({ category }) => {
   const [artworks, setArtworks] = useState([]);
@@ -11,17 +10,19 @@ const FilterCategory = ({ category }) => {
   const [selectedArtwork, setSelectedArtwork] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const getImageUrl = (img) => {
-    if (!img) return `${VITE_API_URL}/uploads/default-artwork.jpg`;
+    if (!img) return `${API_URL}/uploads/default-artwork.jpg`;
     return img.startsWith("http")
       ? img
-      : `${VITE_API_URL}/${img.startsWith("uploads/") ? img : `uploads/${img}`}`;
+      : `${API_URL}/${img.startsWith("uploads/") ? img : `uploads/${img}`}`;
   };
 
   useEffect(() => {
     const fetchArtworks = async () => {
       try {
-        const res = await axios.get(`${VITE_API_URL}/api/memory-items`, {
+        const res = await axios.get(`${API_URL}/api/memory-items`, {
           params: { type: "artwork", ...(category && { category }) },
         });
         // نتأكد من وجود data

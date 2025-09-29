@@ -5,9 +5,10 @@ import axios from "axios";
 import styled from "styled-components";
 import Modal from "../../Components/Modal/Modal"; // ✅ تأكدي المسار صحيح
 import Loader from "../../Components/Modal/Loaders";
-import { VITE_API_URL } from "../../../config";
 
 const ArtistDetails = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams();
   const [artist, setArtist] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -17,7 +18,7 @@ const ArtistDetails = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get(`${VITE_API_URL}/api/artists/${id}`);
+        const res = await axios.get(`${API_URL}/api/artists/${id}`);
 
         setArtist(res.data);
       } catch (err) {

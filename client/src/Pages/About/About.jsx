@@ -8,15 +8,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./About.css";
-import { VITE_API_URL } from "../../../config";
 
 const About = () => {
   const [about, setAbout] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchAbout = async () => {
       try {
-        const res = await axios.get(`${VITE_API_URL}/api/about`);
+        const res = await axios.get(`${API_URL}/api/about`);
         setAbout(res.data);
       } catch (err) {
         console.error("Error fetching about:", err);
@@ -48,7 +49,7 @@ const About = () => {
     if (imgPath.startsWith("data:")) return imgPath;
     if (imgPath.startsWith("http://") || imgPath.startsWith("https://"))
       return imgPath;
-    return `${VITE_API_URL}${imgPath.replace(/^\/+/, "")}`;
+    return `${API_URL}${imgPath.replace(/^\/+/, "")}`;
   };
 
   return (

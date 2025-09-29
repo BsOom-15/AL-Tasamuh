@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { VITE_API_URL } from "../../../config";
 
 const Archive = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
@@ -13,7 +14,7 @@ const Archive = () => {
 
   useEffect(() => {
     axios
-  .get(`${VITE_API_URL}/api/archive?page=${page}&limit=12`)
+  .get(`${API_URL}/api/archive?page=${page}&limit=12`)
   .then((res) => {
     setItems(res.data.data || []);
     setPages(res.data.pages || 1);

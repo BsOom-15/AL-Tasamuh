@@ -5,9 +5,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import FormFileUpload from "../../Components/Modal/FileUploadForm";
-import { VITE_API_URL } from "../../../config";
 
 const ExhibitionsAdmin = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const [exhibitions, setExhibitions] = useState([]);
@@ -39,9 +39,9 @@ const ExhibitionsAdmin = () => {
     const fetchData = async () => {
       try {
         const [exRes, artistsRes, worksRes] = await Promise.all([
-          axios.get(`${VITE_API_URL}/api/exhibitions`),
-          axios.get(`${VITE_API_URL}/api/artists`),
-          axios.get(`${VITE_API_URL}/api/artworks`),
+          axios.get(`${API_URL}/api/exhibitions`),
+          axios.get(`${API_URL}/api/artists`),
+          axios.get(`${API_URL}/api/artworks`),
         ]);
         setExhibitions(Array.isArray(exRes.data.data) ? exRes.data.data : []);
         setAllArtists(Array.isArray(artistsRes.data) ? artistsRes.data : []);
@@ -93,18 +93,18 @@ const ExhibitionsAdmin = () => {
       if (cover instanceof File) formData.append("cover", cover);
 
       if (editingId) {
-        await axios.put(`${VITE_API_URL}/api/exhibitions/${editingId}`, formData, {
+        await axios.put(`${API_URL}/api/exhibitions/${editingId}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Exhibition updated!");
       } else {
-        await axios.post(`${VITE_API_URL}/api/exhibitions/addexhibtions`, formData, {
+        await axios.post(`${API_URL}/api/exhibitions/addexhibtions`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Exhibition added!");
       }
       resetForm();
-      const res = await axios.get(`${VITE_API_URL}/api/exhibitions`);
+      const res = await axios.get(`${API_URL}/api/exhibitions`);
       setExhibitions(Array.isArray(res.data.data) ? res.data.data : []);
     } catch (err) {
       console.log(err);
@@ -129,7 +129,7 @@ const ExhibitionsAdmin = () => {
   const handleDelete = async () => {
     if (!deleteTarget) return;
     try {
-      await axios.delete(`${VITE_API_URL}/api/exhibitions/${deleteTarget}`);
+      await axios.delete(`${API_URL}/api/exhibitions/${deleteTarget}`);
       toast.success("Exhibition deleted!");
       setExhibitions(prev => prev.filter(e => e._id !== deleteTarget));
     } catch (err) {

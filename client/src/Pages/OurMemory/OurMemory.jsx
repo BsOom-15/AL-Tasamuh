@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Modal from "../../Components/Modal/Modal";
-import { VITE_API_URL } from "../../../config";
 
 const OurMemory = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState("all");
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -13,7 +14,7 @@ const OurMemory = () => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const res = await axios.get(`${VITE_API_URL}/api/memory-items`);
+      const res = await axios.get(`${API_URL}/api/memory-items`);
       setItems(res.data.data || []);
     } catch (err) {
       console.error(err);
@@ -42,13 +43,13 @@ useEffect(() => {
 
   // ✅ Helper function to handle image URLs
  const getImageUrl = (img) => {
-  if (!img) return `${VITE_API_URL}/uploads/default-artwork.jpg`;
+  if (!img) return `${API_URL}/uploads/default-artwork.jpg`;
 
   const cleanPath = img.startsWith("uploads/") ? img : `uploads/${img}`;
 
   return img.startsWith("http")
     ? img
-    : `${VITE_API_URL}${cleanPath.replace(/^\/+/, "")}`;
+    : `${API_URL}${cleanPath.replace(/^\/+/, "")}`;
 };
 
 

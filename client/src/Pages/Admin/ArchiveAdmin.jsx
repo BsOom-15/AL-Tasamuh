@@ -5,9 +5,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import FormFileUpload from "../../Components/Modal/FileUploadForm";
-import { VITE_API_URL } from "../../../config";
 
 const ArchiveAdmin = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
+  
   const navigate = useNavigate();
 
   const [archiveItems, setArchiveItems] = useState([]);
@@ -33,7 +35,7 @@ const ArchiveAdmin = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${VITE_API_URL}/api/archive`);
+        const res = await axios.get(`${API_URL}/api/archive`);
         setArchiveItems(Array.isArray(res.data.data) ? res.data.data : []);
       } catch (err) {
         console.log(err);
@@ -72,19 +74,19 @@ const ArchiveAdmin = () => {
       if (image instanceof File) formData.append("image", image);
 
       if (editingId) {
-        await axios.put(`${VITE_API_URL}/api/archive/${editingId}`, formData, {
+        await axios.put(`${API_URL}/api/archive/${editingId}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Archive item updated!");
       } else {
-        await axios.post(`${VITE_API_URL}/api/archive`, formData, {
+        await axios.post(`${API_URL}/api/archive`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Archive item added!");
       }
 
       resetForm();
-      const res = await axios.get(`${VITE_API_URL}/api/archive`);
+      const res = await axios.get(`${API_URL}/api/archive`);
       setArchiveItems(Array.isArray(res.data.data) ? res.data.data : []);
     } catch (err) {
       console.log(err);
@@ -109,7 +111,7 @@ const ArchiveAdmin = () => {
   const handleDelete = async () => {
     if (!deleteTarget) return;
     try {
-      await axios.delete(`${VITE_API_URL}/api/archive/${deleteTarget}`);
+      await axios.delete(`${API_URL}/api/archive/${deleteTarget}`);
       toast.success("Archive item deleted!");
       setArchiveItems(prev => prev.filter(i => i._id !== deleteTarget));
     } catch (err) {

@@ -3,9 +3,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { VITE_API_URL } from "../../../config";
 
 const ArtistsAdmin = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
+  
   const [artists, setArtists] = useState([]);
   const [allArtworks, setAllArtworks] = useState([]);
   const [allExhibitions, setAllExhibitions] = useState([]);
@@ -36,9 +38,9 @@ const ArtistsAdmin = () => {
     const fetchData = async () => {
       try {
         const [artistsRes, artworksRes, exhibitionsRes] = await Promise.all([
-          axios.get(`${VITE_API_URL}/api/artists`),
-          axios.get(`${VITE_API_URL}/api/artworks`),
-          axios.get(`${VITE_API_URL}/api/exhibitions`),
+          axios.get(`${API_URL}/api/artists`),
+          axios.get(`${API_URL}/api/artworks`),
+          axios.get(`${API_URL}/api/exhibitions`),
         ]);
 
         // Debug
@@ -84,15 +86,15 @@ const ArtistsAdmin = () => {
       };
 
       if (editingId) {
-        await axios.put(`${VITE_API_URL}/api/artists/${editingId}`, payload);
+        await axios.put(`${API_URL}/api/artists/${editingId}`, payload);
         toast.success("Artist updated!");
       } else {
-        await axios.post(`${VITE_API_URL}/api/artists/addArtist`, payload);
+        await axios.post(`${API_URL}/api/artists/addArtist`, payload);
         toast.success("Artist added!");
       }
 
       resetForm();
-      const res = await axios.get(`${VITE_API_URL}/api/artists`);
+      const res = await axios.get(`${API_URL}/api/artists`);
       setArtists(Array.isArray(res.data) ? res.data : res.data.data || []);
     } catch (err) {
       console.log(err);
@@ -117,7 +119,7 @@ const ArtistsAdmin = () => {
   const handleDelete = async () => {
     if (!deleteTarget) return;
     try {
-      await axios.delete(`${VITE_API_URL}/api/artists/${deleteTarget}`);
+      await axios.delete(`${API_URL}/api/artists/${deleteTarget}`);
       toast.success("Artist deleted!");
       setArtists(prev => prev.filter(a => a._id !== deleteTarget));
     } catch (err) {

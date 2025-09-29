@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Modal from "../../Components/Modal/Modal";
-import { VITE_API_URL } from "../../../config";
 
 const Artworks = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
   const [artworks, setArtworks] = useState([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
@@ -17,8 +18,8 @@ const Artworks = () => {
       try {
         const url =
   filter === "all"
-    ? `${VITE_API_URL}/api/artworks?page=${page}&limit=12`
-    : `${VITE_API_URL}/api/artworks?page=${page}&limit=12&status=${filter}`;
+    ? `${API_URL}/api/artworks?page=${page}&limit=12`
+    : `${API_URL}/api/artworks?page=${page}&limit=12&status=${filter}`;
 
 const res = await axios.get(url);
 setArtworks(res.data.data || []);
@@ -73,7 +74,7 @@ setPages(res.data.pages || 1);
     art.image
       ? art.image.startsWith("http")
         ? art.image
-        : `${VITE_API_URL}${art.image.replace(/^\/+/, "")}`
+        : `${API_URL}${art.image.replace(/^\/+/, "")}`
       : "/default-artwork.jpg"
   }
   alt={art.title}
