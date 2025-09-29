@@ -1,0 +1,54 @@
+.anthology
+{
+    font-weight: 300;
+    color: #616161;
+    margin-bottom: 25px;
+}
+
+.art
+{
+    width: 100%;
+    margin: 0px;
+}
+
+.artwork-border
+{
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.artist-name
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.art-name
+{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.artwork-img img
+{
+    width: 300px;
+    height: 400px;
+    border-radius: 2px;
+}
+
+.artwork-details
+{
+    text-align: left;
+}
+
+.artwork-details p
+{
+    color: #616161;
+    margin-top: 3px;
+}
+

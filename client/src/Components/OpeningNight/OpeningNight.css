@@ -1,0 +1,34 @@
+.opening-night-container
+{
+    width: 100%;
+    padding: 30px;
+}
+
+.opening-night-content
+{
+    margin: 100px 0px;
+} 
+
+.opening-night-content h3
+{
+    color: #616161;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 500px;
+}
+
+.swiper-slide img {
+    margin-top: 15px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #616161 !important; /* لون الأزرار */
+}

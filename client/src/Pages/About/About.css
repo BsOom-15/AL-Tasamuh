@@ -1,0 +1,227 @@
+.about-text
+{
+    margin: 50px;
+}
+
+.about-text h1
+{
+    font-weight: 400;
+}
+
+.about-text p
+{
+    color: #616161;
+}
+
+.about-imgText
+{
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+            url('../../assets/AboutPhoto/bright-pop-landscape-design.jpg');
+            background-attachment: fixed;
+    width: 100%;
+    height: 400px;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #f1f1f1;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 70px;
+    line-height: 2.5;
+}
+
+
+.about-text-sections
+{
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.about-text-sections h2
+{
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+.about-text-sections p
+{
+    line-height: 2;
+    margin-bottom: 60px;
+    font-size: 18px;
+}
+
+.about-gellary
+{
+    text-transform: uppercase;
+    width: 100%;
+    margin-bottom: 150px;
+}
+
+.about-gellary h2,
+
+.gellary-about {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 60px;
+    width: 85%;
+    margin: 50px auto 100px auto;
+}
+
+.gellary-about .gallery-image {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+.gellary-about .gallery-text {
+    flex: 1;
+    min-width: 250px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 30px;
+}
+
+.gellary-about h3 {
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+
+.swiper-pagination-bullet-active {
+    background: #1F8B8D !important; 
+}
+
+.about-qout {
+    margin-bottom: 70px;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #f1f1f1;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 2.5;
+    text-align: center;
+}
+
+.qout p
+{
+    margin-top: 25px;
+    text-align: end;
+}
+
+.founderSection
+{
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    width: 85%;
+    margin: auto;
+    margin-bottom: 150px;
+}
+
+.founderImage
+{
+    width: 50%;
+}
+
+.founderImage img
+{
+    width: 100%;
+    height: 50%;
+}
+
+.founderTitle
+{
+    width: 50%;
+}   
+
+/* 📱 الموبايل والتابلت */
+@media (max-width: 992px) {
+  .gellary-about {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .gellary-about .gallery-text {
+    align-items: center;
+    padding-left: 0;
+  }
+
+  .founderSection {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    margin: 80px auto;
+  }
+
+  .founderImage,
+  .founderTitle {
+    width: 100%;
+  }
+
+  .about-text {
+    margin: 30px 15px;
+    text-align: center;
+  }
+
+  .about-text-sections {
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-imgText {
+    height: auto;
+    padding: 40px 20px;
+    font-size: 16px;
+    line-height: 2;
+    text-align: center;
+  }
+
+  .about-text-sections p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .about-qout {
+    height: auto;
+    padding: 40px 20px;
+    font-size: 16px;
+    line-height: 2;
+  }
+
+  .qout h1 {
+    font-size: 20px;
+  }
+
+  .founderTitle h1 {
+    font-size: 22px;
+  }
+
+  .founderTitle h3 {
+    font-size: 18px;
+  }
+
+  .founderTitle p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+}

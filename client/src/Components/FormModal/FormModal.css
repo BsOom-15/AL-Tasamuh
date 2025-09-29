@@ -1,0 +1,190 @@
+.message-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  font-family: "Roboto", serif;
+}
+
+.close-btn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
+  color: #cc0000;
+  font-size: 28px;
+  transition: 0.2s ease-in-out;
+}
+
+.close-btn:hover {
+  color: #fff;
+  background-color: #cc0000;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.message-modal-content {
+  background-color: #eee;
+  width: 450px;
+  max-width: 95%;
+  height: auto;
+  max-height: 90vh;
+  padding: 40px;
+  text-align: start;
+  border-radius: 8px;
+  overflow-y: auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.message-modal-content h1 {
+  font-size: 32px;
+  margin-bottom: 25px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.message-form {
+  width: 100%;
+}
+
+.input-form {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.input-form span {
+  margin-bottom: 8px;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.input-form input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #616161;
+  outline: none;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.input-form textarea {
+  resize: none;
+  width: 100%;
+  height: 120px;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #616161;
+  outline: none;
+  font-size: 14px;
+}
+
+.message-modal-content p {
+  color: #616161;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  margin-bottom: 12px;
+}
+
+.btn-form-modal {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.btn-form-modal button {
+  padding: 12px 25px;
+  border: none;
+  outline: none;
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
+}
+
+.btn-form-modal button:hover {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.note-enquire {
+  color: #616161;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+
+/* 🎯 Responsive Design */
+
+/* شاشات كبيرة */
+@media (min-width: 1200px) {
+  .message-modal-content {
+    width: 500px;
+    padding: 50px;
+  }
+  .message-modal-content h1 {
+    font-size: 36px;
+  }
+}
+
+/* لابتوب وتابلت */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .message-modal-content {
+    width: 400px;
+    padding: 35px;
+  }
+  .message-modal-content h1 {
+    font-size: 28px;
+  }
+}
+
+/* الموبايل */
+@media (max-width: 767px) {
+  .close-btn {
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+  }
+
+  .message-modal-content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .message-modal-content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .input-form input,
+  .input-form textarea {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .btn-form-modal button {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .note-enquire {
+    font-size: 12px;
+  }
+}

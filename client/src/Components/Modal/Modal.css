@@ -1,0 +1,376 @@
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+a{
+    text-decoration: none;
+    list-style: none;
+    color: #000;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #CC0000;
+    transition: all 0.2s ease-in-out;
+}
+
+.close-modal:hover {
+    color: #fff;
+    background-color: #CC0000;
+    border-radius: 50%;
+    padding: 2.5px;
+}
+
+.close-modal .close-icon {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.modal-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 25px;
+}
+
+.left-modal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 150px;
+}
+
+.modal-name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    position: absolute;
+    top: 150px;
+    left: 77%;
+    transform: translate(-50%, -50%);
+}
+
+.title-modal {
+    width: 50%;
+}
+
+.title-modal p {
+    margin-left: -30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #616161;
+    text-align: start;
+}
+
+.modal-btn {
+    width: 60%;
+    margin: 20px 0;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.modal-btn .btn {
+    margin-top: 15px;
+}
+
+.enquire-btn {
+    padding: 12px 25px;
+    border: none;
+    outline: none;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: linear 0.3s ease-in;
+}
+
+.enquire-btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.view-btn {
+    padding: 8px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    font-weight: 600;
+    border: 1px solid #616161;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-icon {
+    fill: none;
+    color: #616161;
+}
+
+.share-wrapper {
+    width: 65%;
+    margin-top: 10px;
+}
+
+.share-wrapper .share-btn {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin: 0px 5px;
+    background-color: #eee;
+    text-align: center;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-out;
+    font-family: "Roboto", serif;
+    overflow: hidden;
+}
+
+.share-wrapper .share-btn:hover {
+    width: 180px;
+}
+
+.share-wrapper .share-btn .share-icon {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+    box-sizing: border-box;
+}
+
+.share-wrapper .share-btn:nth-child(1):hover { background: #4267B2; color: #fff; }
+.share-wrapper .share-btn:nth-child(2):hover { background: #E1306c; color: #fff; }
+.share-wrapper .share-btn:nth-child(3):hover { background: #141414; color: #fff; }
+.share-wrapper .share-btn:nth-child(4):hover { background: #cc0000; color: #fff; }
+
+.share-wrapper .share-btn .share-icon .icon {
+    font-size: 20px;
+    line-height: 50px;
+    transition: all 0.3s ease-out;
+}
+
+.share-wrapper .share-btn span {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 50px;
+    margin-left: 10px;
+}
+
+.right-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.image-modal {
+    width: 50%;
+}
+
+.image-modal img {
+    width: 80%;
+    height: 80%;
+}
+
+.prev-next {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+}
+
+.prev-next .next {
+    position: absolute;
+    left: 700px;
+    cursor: pointer;
+}
+
+.prev-next .next:hover,
+.prev-next .prev:hover {
+    color: #CC0000;
+}
+
+.prev-next .prev {
+    position: absolute;
+    right: 700px;
+    cursor: pointer;
+}
+
+/* Wall View Modal */
+.wall-view-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.wall-view-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/white-sideboard-living-room-interior-with-copy-space.jpg');
+    background-position: center;
+    background-size: cover; /* تم تحسين الخلفية لتغطي الشاشة بالكامل */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 80px;
+}
+
+.close-wall-view {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.close-wall-view:hover {
+    background: #CC0000;
+    color: #fff;
+}
+
+.wall-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    height: 350px;
+}
+
+.artwork-on-wall {
+    width: 100%;
+    height: 100%;
+    border: 8px solid #eee;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* -------------------- R E S P O N S I V E -------------------- */
+@media (max-width: 1024px) {
+    .modal-container {
+        gap: 30px;
+        padding: 20px;
+    }
+    .prev-next .next { left: 30px; }
+    .prev-next .prev { right: 30px; }
+}
+
+@media (max-width: 768px) {
+    .modal-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+    .left-modal, .right-modal {
+        width: 100%;
+        margin-left: 0;
+    }
+    .modal-name {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .image-modal {
+        width: 80%;
+    }
+    .wall-view-container {
+        width: 100%;
+        height: 100%;
+        padding-top: 50px;
+    }
+    .wall-image-container {
+        width: 90%;
+        height: auto;
+    }
+    .view-btn {
+        padding: 6px 15px; /* تقليل حجم الزر */
+        font-size: 14px;
+    }
+    .prev-next .next { left: 10px; }
+    .prev-next .prev { right: 10px; }
+
+    .prev-next {
+        position: absolute;
+        top: 50%;
+        width: auto;
+        transform: translateY(-50%);
+    }
+
+    .prev-next .prev {
+        right: calc(50% + 180px); /* ضعها جنب الصورة على اليمين */
+    }
+
+    .prev-next .next {
+        left: calc(50% + 180px); /* ضعها جنب الصورة على اليسار */
+    }
+}
+
+@media (max-width: 480px) {
+    .enquire-btn, .view-btn {
+        /* width: 100%; */
+        text-align: center;
+    }
+    .view-btn {
+        padding: 5px 10px;
+        font-size: 12px; /* أصغر زر على الهواتف */
+    }
+    .share-wrapper .share-btn:hover {
+        width: 120px;
+    }
+    .modal-btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,117 @@
+.navbar-container {
+  position: relative; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10; 
+  background-color: rgba(255, 255, 255, 0); 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar-container.white-bg .menu-icon {
+  color: #1F8B8D; /* غامق علشان يبان مع الخلفية البيضاء */
+}
+
+.navbar-logo img {
+  width: 200px;
+  max-width: 100%;
+}
+
+/* Menu Icon (Hamburger) */
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #eee;
+  z-index: 21;
+}
+
+.menu-icon.close-icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  color: red; /* ❌ أحمر */
+}
+
+/* الروابط */
+.navbar-links ul {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links ul li {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  list-style: none;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #eee;
+  transition: all 0.3s;
+}
+
+.navbar-links ul li:hover {
+  color: #1F8B8D;
+}
+
+/* السوشيال */
+.navbar-social {
+  display: flex;
+  gap: 10px;
+}
+
+.navbar-social a {
+  text-decoration: none;
+  color: #eee;
+  transition: all 0.3s;
+}
+
+.navbar-social a:hover {
+  color: #1F8B8D;
+  transform: scale(1.1);
+}
+
+/* 📱 ريسبونسيف */
+@media (max-width: 1024px) {
+  .navbar-logo img {
+    width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    background: #759899;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  .navbar-links.active {
+    max-height: 400px; /* القائمة تفتح */
+  }
+ 
+  .navbar-links ul {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .navbar-social {
+    display: none; /* نخليها مخفية في الموبايل */
+  }
+}

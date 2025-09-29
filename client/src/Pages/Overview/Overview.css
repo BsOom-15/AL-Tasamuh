@@ -1,0 +1,299 @@
+.go-back {
+  margin: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #616161;
+}
+
+.go-back button {
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: #616161;
+}
+
+.overview-header h1 {
+  margin: 50px 50px 0px 50px;
+}
+
+.overview-header-nav {
+  margin: 25px 50px 50px 50px;
+  display: flex;
+  align-items: flex-start; /* علشان الكلام يبقى مرتب */
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.overview-left {
+  display: flex;
+  flex-direction: column; /* يخلي الاسم والتاريخ تحت بعض */
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.overview-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.overview-right button {
+  background: transparent;
+  width: 100px;
+  height: 35px;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #616161;
+  border-radius: 4px;
+  transition: all 0.5s ease-in-out;
+}
+
+.overview-right button:hover,
+.overview-right button.active {
+  background: #616161;
+  color: #fff;
+}
+
+.overview-box {
+  width: 90%;
+  margin: 50px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.box-overview-left,
+.box-overview-right {
+  width: 50%;
+  height: 450px;
+}
+
+.box-overview-left {
+  overflow-y: scroll;
+  position: relative;
+}
+
+.box-overview-left::before {
+  content: " ";
+  height: 100%;
+  width: 2px;
+  background-color: #616161;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-right: 20px;
+}
+
+.box-overview-left::-webkit-scrollbar {
+  width: 5px;
+  background-color: #ddd;
+}
+
+.box-overview-left::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 2px;
+}
+
+.box-overview-left p {
+  margin: 20px;
+}
+
+.box-overview-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overview-list {
+  display: flex;
+  flex-direction: column; /* الاسم والتاريخ تحت بعض */
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+  letter-spacing: 0.5px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.view-works {
+  margin-top: 15px;
+  width: 150px;
+  height: 35px;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid #616161;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  color: #616161;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.view-works:hover {
+  background: #616161;
+  color: #fff;
+}
+
+.overview-description {
+  width: 40%;
+  margin: 50px;
+  margin-top: 150px;
+  font-size: 20px;
+  color: #212121;
+  letter-spacing: 0.5px;
+}
+
+.work-list {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Itim", serif;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 250px;
+  padding: 50px;
+}
+
+.work-item {
+  border-radius: 8px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.work-img img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  max-height: 400px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.artist-name {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column; /* الاسم والتاريخ تحت بعض */
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.work-details {
+  text-align: left;
+}
+
+.work-details p {
+  color: #616161;
+  margin-top: 3px;
+}
+
+/* 🎯 Responsive Design */
+
+/* الشاشات الكبيرة جداً */
+@media (min-width: 1400px) {
+  .work-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* اللابتوب */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .overview-box {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .overview-description {
+    width: 50%;
+    font-size: 18px;
+  }
+
+  .work-list {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 200px;
+  }
+}
+
+/* التابلت */
+@media (max-width: 991px) and (min-width: 768px) {
+  .overview-box {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+  }
+
+  .box-overview-left,
+  .box-overview-right {
+    width: 100%;
+    height: auto;
+  }
+
+  .overview-description {
+    width: 80%;
+    margin-top: 100px;
+    font-size: 18px;
+  }
+
+  .work-list {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 150px;
+  }
+
+  .work-img img {
+    max-width: 260px;
+    max-height: 360px;
+  }
+}
+
+/* الموبايل */
+@media (max-width: 767px) {
+  .overview-header h1,
+  .overview-header-nav,
+  .overview-description {
+    margin: 20px;
+  }
+
+  .overview-box {
+    flex-direction: column;
+    margin: 20px;
+    gap: 20px;
+  }
+
+  .box-overview-left,
+  .box-overview-right {
+    width: 100%;
+    height: auto;
+  }
+
+  .overview-description {
+    width: 100%;
+    margin-top: 50px;
+    font-size: 16px;
+  }
+
+  .work-list {
+    grid-template-columns: 1fr;
+    margin-top: 100px;
+    padding: 20px;
+    gap: 20px;
+    justify-items: center;
+  }
+
+  .artist-name {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .work-img img {
+    width: 90%;
+    max-width: 320px;
+    height: auto;
+    max-height: 380px;
+  }
+}
