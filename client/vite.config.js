@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { VITE_VITE_API_URL } from './config'; // <-- ملف فيه الـ VITE_VITE_API_URL
+import { VITE_API_URL } from './config';
 
-// https://vite.dev/config/
 export default defineConfig({
   define: {
     __WS_TOKEN__: JSON.stringify(process.env.VITE_WS_TOKEN ?? '')
@@ -19,11 +18,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: VITE_VITE_API_URL,  // استخدام الثابت
+        target: VITE_API_URL,
         changeOrigin: true,
       },
       '/uploads': {
-        target: VITE_VITE_API_URL,  // استخدام الثابت
+        target: VITE_API_URL,
         changeOrigin: true,
       },
     },
