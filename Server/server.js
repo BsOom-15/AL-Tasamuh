@@ -29,8 +29,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cors({
   origin: [
-    "https://68dadfbde4b50ca6ccb21486--al-tasamuh-art-gallary.netlify.app",
-    "http://localhost:5173" // لإختبار التطوير المحلي
+    'http://localhost:5173', // للتطوير المحلي
+    'https://al-tasamuh-art-gallary.netlify.app' // الفرونت على Netlify
   ],
   credentials: true
 }));
