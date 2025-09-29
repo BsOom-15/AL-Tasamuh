@@ -1,2 +1,2 @@
 // config.js
-export const VITE_API_URL = "https://al-tasamuh-production.up.railway.app";
+export const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
