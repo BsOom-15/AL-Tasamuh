@@ -14,16 +14,17 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@emotion/react', '@emotion/styled'],
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: import.meta.env.VITE_API_URL || 'http://localhost:5000',
-        changeOrigin: true,
-      },
-      '/uploads': {
-        target: import.meta.env.VITE_API_URL || 'http://localhost:5000',
-        changeOrigin: true,
-      },
+ server: {
+  proxy: {
+    '/api': {
+      target: process.env.VITE_API_URL || 'http://localhost:5000',
+      changeOrigin: true,
+    },
+    '/uploads': {
+      target: process.env.VITE_API_URL || 'http://localhost:5000',
+      changeOrigin: true,
     },
   },
+},
+
 });
