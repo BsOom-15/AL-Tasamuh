@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { sendMail } from "../utils/mailer.js";
-import { VITE_VITE_API_URL } from "../../client/config.js";
 
 const createToken = (payload) =>
   jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
@@ -42,9 +41,10 @@ export const profile = async (req, res) => {
   if (!admin) return res.status(404).json({ message: "Admin not found" });
 
   // تحويل اسم الملف إلى رابط كامل
-  const avatarUrl = admin.avatar 
-    ? `${process.env.SERVER_URL || `${VITE_VITE_API_URL}`}/uploads/avatars/${admin.avatar}`
-    : "";
+  const avatarUrl = admin.avatar
+  ? `${process.env.SERVER_URL || process.env.VITE_API_URL}/uploads/avatars/${admin.avatar}`
+  : "";
+
 
   res.json({ 
     admin: {
