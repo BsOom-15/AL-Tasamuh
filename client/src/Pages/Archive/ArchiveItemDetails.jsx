@@ -18,7 +18,7 @@
 
 //   useEffect(() => {
 //     axios
-//       .get(`${VITE_VITE_API_URL}/api/archive/${id}`)
+//       .get(`${VITE_API_URL}/api/archive/${id}`)
 //       .then((res) => {
 //         // نخلي status = false عشان الـ Archive كله مبيعات
 //         setItem({ ...res.data, status: false });
@@ -26,7 +26,7 @@
 //       .catch((err) => console.error(err));
 
 //     axios
-//       .get(`${VITE_VITE_API_URL}/api/archive?limit=100`)
+//       .get(`${VITE_API_URL}/api/archive?limit=100`)
 //       .then((res) => setAllItems(res.data.data))
 //       .catch((err) => console.error(err));
 //   }, [id]);

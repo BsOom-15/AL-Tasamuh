@@ -8,7 +8,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Loader from "../../Components/Modal/Loaders";
 import Modal from "../../Components/Modal/Modal"; // ✅ استدعاء المودال الجاهز
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const ArchiveItemDetails = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ const ArchiveItemDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`${VITE_VITE_API_URL}/api/archive/${id}`)
+      .get(`${VITE_API_URL}/api/archive/${id}`)
       .then((res) => {
         // نخلي status = false عشان الـ Archive كله مبيعات
         setItem({ ...res.data, status: false });
@@ -27,7 +27,7 @@ const ArchiveItemDetails = () => {
       .catch((err) => console.error(err));
 
     axios
-      .get(`${VITE_VITE_API_URL}/api/archive?limit=100`)
+      .get(`${VITE_API_URL}/api/archive?limit=100`)
       .then((res) => setAllItems(res.data.data))
       .catch((err) => console.error(err));
   }, [id]);

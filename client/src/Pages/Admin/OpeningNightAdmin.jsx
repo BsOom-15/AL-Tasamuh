@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const OpeningNightAdmin = () => {
   const [nights, setNights] = useState([]);
@@ -22,7 +22,7 @@ const OpeningNightAdmin = () => {
 
   const fetchNights = async () => {
     try {
-      const res = await axios.get(`${VITE_VITE_API_URL}/api/opening-night`);
+      const res = await axios.get(`${VITE_API_URL}/api/opening-night`);
       setNights(Array.isArray(res.data.data) ? res.data.data : []);
     } catch (err) {
       console.log(err);
@@ -56,12 +56,12 @@ const OpeningNightAdmin = () => {
       // صور قديمة (لو في تعديل)
       if (editingId) {
         oldImages.forEach((img) => formData.append("oldImages", img));
-        await axios.put(`${VITE_VITE_API_URL}/api/opening-night/${editingId}`, formData, {
+        await axios.put(`${VITE_API_URL}/api/opening-night/${editingId}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Opening Night updated!");
       } else {
-        await axios.post(`${VITE_VITE_API_URL}/api/opening-night`, formData, {
+        await axios.post(`${VITE_API_URL}/api/opening-night`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Opening Night added!");
@@ -86,7 +86,7 @@ const OpeningNightAdmin = () => {
   const handleDelete = async () => {
     if (!deleteTarget) return;
     try {
-      await axios.delete(`${VITE_VITE_API_URL}/api/opening-night/${deleteTarget}`);
+      await axios.delete(`${VITE_API_URL}/api/opening-night/${deleteTarget}`);
       toast.success("Opening Night deleted!");
       setNights((prev) => prev.filter((n) => n._id !== deleteTarget));
     } catch (err) {
@@ -125,7 +125,7 @@ const OpeningNightAdmin = () => {
             <PreviewGrid>
               {oldImages.map((img, idx) => (
                 <div key={idx} style={{ position: "relative" }}>
-                  <img src={`${VITE_VITE_API_URL}/uploads/${img}`} alt="old" />
+                  <img src={`${VITE_API_URL}/uploads/${img}`} alt="old" />
                   <button
                     type="button"
                     onClick={() =>
@@ -190,7 +190,7 @@ const OpeningNightAdmin = () => {
                       {n.images.map((img, idx) => (
                         <img
                           key={idx}
-                          src={`${VITE_VITE_API_URL}/uploads/${img}`}
+                          src={`${VITE_API_URL}/uploads/${img}`}
                           alt="night"
                         />
                       ))}

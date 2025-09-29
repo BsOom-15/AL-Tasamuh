@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import FormFileUpload from "../../Components/Modal/FileUploadForm";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const CollectiblesAdmin = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const CollectiblesAdmin = () => {
   // Fetch data
  const fetchData = async () => {
   try {
-    const res = await axios.get(`${VITE_VITE_API_URL}/api/collectibles`);
+    const res = await axios.get(`${VITE_API_URL}/api/collectibles`);
     console.log("API Response:", res.data); // شوف شكل الداتا
     setCollectibles(Array.isArray(res.data) ? res.data : res.data.data || []);
   } catch (err) {
@@ -57,12 +57,12 @@ const CollectiblesAdmin = () => {
   if (cover instanceof File) fd.append("image", cover);
 
       if (editingId) {
-        await axios.put(`${VITE_VITE_API_URL}/api/collectibles/${editingId}`, fd, {
+        await axios.put(`${VITE_API_URL}/api/collectibles/${editingId}`, fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Collectible updated!");
       } else {
-        await axios.post(`${VITE_VITE_API_URL}/api/collectibles`, fd, {
+        await axios.post(`${VITE_API_URL}/api/collectibles`, fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Collectible added!");
@@ -94,7 +94,7 @@ const CollectiblesAdmin = () => {
   const handleDelete = async () => {
     if (!deleteTarget) return;
     try {
-      await axios.delete(`${VITE_VITE_API_URL}/api/collectibles/${deleteTarget}`);
+      await axios.delete(`${VITE_API_URL}/api/collectibles/${deleteTarget}`);
       toast.success("Collectible deleted!");
       setCollectibles(prev => prev.filter(e => e._id !== deleteTarget));
     } catch (err) {
@@ -181,7 +181,7 @@ const CollectiblesAdmin = () => {
                       item.image
                         ? item.image.startsWith("http")
                           ? item.image
-                          : `${VITE_VITE_API_URL}/uploads/${item.image}`
+                          : `${VITE_API_URL}/uploads/${item.image}`
                         : "https://via.placeholder.com/80"
                     }
                     alt={item.title}

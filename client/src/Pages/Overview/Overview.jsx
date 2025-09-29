@@ -16,7 +16,7 @@ import {
     TwitterShareButton,
 } from "react-share";
 import Loader from "../../Components/Modal/Loaders";
-import { VITE_VITE_API_URL } from '../../../config';
+import { VITE_API_URL } from '../../../config';
 
 const Overview = () => {
     const [view, setView] = useState('overview');
@@ -33,7 +33,7 @@ const Overview = () => {
     useEffect(() => {
         const fetchExhibition = async () => {
             try {
-                const res = await axios.get(`${VITE_VITE_API_URL}/api/exhibitions/${id}`);
+                const res = await axios.get(`${VITE_API_URL}/api/exhibitions/${id}`);
 
                 setExhibition(res.data);
             } catch (err) {
@@ -47,7 +47,7 @@ const Overview = () => {
     const handleViewWorks = async () => {
         if (!exhibition?.artist?._id) return;
         try {
-            const res = await axios.get(`${VITE_VITE_API_URL}/api/artworks?artistId=${exhibition.artist._id}`);
+            const res = await axios.get(`${VITE_API_URL}/api/artworks?artistId=${exhibition.artist._id}`);
 
             setAllWorks(Array.isArray(res.data.data) ? res.data.data : []);
             setView('work');

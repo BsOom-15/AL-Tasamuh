@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import FormFileUpload from "../../Components/Modal/FileUploadForm";
-import { VITE_VITE_API_URL} from "../../../config";
+import { VITE_API_URL} from "../../../config";
 
 
 const MemoryAdmin = () => {
@@ -38,12 +38,12 @@ const MemoryAdmin = () => {
     // already absolute
     if (typeof src !== "string") return null;
     if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("data:")) return src;
-    // case: '/uploads/filename.jpg' => VITE_VITE_API_URL + src
-    if (src.startsWith("/uploads")) return `${VITE_VITE_API_URL}${src}`;
-    // case: '/filename.jpg' (backend sometimes saves '/filename') => VITE_VITE_API_URL + '/uploads/filename'
+    // case: '/uploads/filename.jpg' => VITE_API_URL + src
+    if (src.startsWith("/uploads")) return `${VITE_API_URL}${src}`;
+    // case: '/filename.jpg' (backend sometimes saves '/filename') => VITE_API_URL + '/uploads/filename'
     if (src.startsWith("/")) {
       const filename = src.replace(/^\//, "");
-      return `${VITE_VITE_API_URL}/uploads/${filename}`;
+      return `${VITE_API_URL}/uploads/${filename}`;
     }
     // otherwise return as is (could be relative path already correct)
     return src;
@@ -54,9 +54,9 @@ const MemoryAdmin = () => {
     const fetchData = async () => {
       try {
         const [itemsRes, artistsRes, exhibitionsRes] = await Promise.all([
-          axios.get(`${VITE_VITE_API_URL}/api/memory-items`),
-          axios.get(`${VITE_VITE_API_URL}/api/artists`),
-          axios.get(`${VITE_VITE_API_URL}/api/exhibitions`),
+          axios.get(`${VITE_API_URL}/api/memory-items`),
+          axios.get(`${VITE_API_URL}/api/artists`),
+          axios.get(`${VITE_API_URL}/api/exhibitions`),
         ]);
 
         // itemsRes expected shape: { data: items }
@@ -101,12 +101,12 @@ const MemoryAdmin = () => {
       if (image instanceof File) formData.append("image", image);
 
       if (editingId) {
-        await axios.put(`${VITE_VITE_API_URL}/api/memory-items/${editingId}`, formData, {
+        await axios.put(`${VITE_API_URL}/api/memory-items/${editingId}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Memory item updated!");
       } else {
-        await axios.post(`${VITE_VITE_API_URL}/api/memory-items`, formData, {
+        await axios.post(`${VITE_API_URL}/api/memory-items`, formData, {
   headers: { "Content-Type": "multipart/form-data" },
 });
 
@@ -114,7 +114,7 @@ const MemoryAdmin = () => {
       }
 
       // refresh list
-      const res = await axios.get(`${VITE_VITE_API_URL}/api/memory-items`);
+      const res = await axios.get(`${VITE_API_URL}/api/memory-items`);
       setItems(Array.isArray(res.data?.data) ? res.data.data : []);
       resetForm();
     } catch (err) {
@@ -142,7 +142,7 @@ const MemoryAdmin = () => {
   const handleDelete = async () => {
     if (!deleteTarget) return;
     try {
-      await axios.delete(`${VITE_VITE_API_URL}/api/memory-items/${deleteTarget}`);
+      await axios.delete(`${VITE_API_URL}/api/memory-items/${deleteTarget}`);
       setItems(prev => prev.filter(i => i._id !== deleteTarget));
       toast.success("Memory item deleted!");
     } catch (err) {

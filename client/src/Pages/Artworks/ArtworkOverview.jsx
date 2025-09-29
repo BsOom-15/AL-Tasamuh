@@ -4,7 +4,7 @@ import axios from "axios";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import styled from "styled-components";
 import Loader from "../../Components/Modal/Loaders";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const ArtworkOverview = () => {
   const { id } = useParams();
@@ -15,11 +15,11 @@ const ArtworkOverview = () => {
     // ✅ Helper لمعالجة الصورة
   const getImageUrl = (img) => {
     if (!img) return "/default-artwork.jpg";
-    return img.startsWith("http") ? img : `${VITE_VITE_API_URL}/${img}`;
+    return img.startsWith("http") ? img : `${VITE_API_URL}/${img}`;
   };
 
   useEffect(() => {
-    axios.get(`${VITE_VITE_API_URL}/api/artworks/${id}`)
+    axios.get(`${VITE_API_URL}/api/artworks/${id}`)
       .then((res) => setArtwork(res.data))
       .catch((err) => console.error(err));
   }, [id]);

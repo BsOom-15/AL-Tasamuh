@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import FormFileUpload from "../../Components/Modal/FileUploadForm";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const ArtworksAdmin = () => {
   const navigate = useNavigate();
@@ -29,8 +29,8 @@ const ArtworksAdmin = () => {
     const fetchData = async () => {
       try {
         const [artworksRes, artistsRes] = await Promise.all([
-          axios.get(`${VITE_VITE_API_URL}/api/artworks`),
-          axios.get(`${VITE_VITE_API_URL}/api/artists`),
+          axios.get(`${VITE_API_URL}/api/artworks`),
+          axios.get(`${VITE_API_URL}/api/artists`),
         ]);
 
         setArtworks(Array.isArray(artworksRes.data.data) ? artworksRes.data.data : []);
@@ -64,18 +64,18 @@ const ArtworksAdmin = () => {
       if (image instanceof File) formData.append("image", image);
 
       if (editingId) {
-        await axios.put(`${VITE_VITE_API_URL}/api/artworks/${editingId}`, formData, {
+        await axios.put(`${VITE_API_URL}/api/artworks/${editingId}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Artwork updated!");
       } else {
-        await axios.post(`${VITE_VITE_API_URL}/api/artworks`, formData, {
+        await axios.post(`${VITE_API_URL}/api/artworks`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Artwork added!");
       }
       resetForm();
-      const res = await axios.get(`${VITE_VITE_API_URL}/api/artworks`);
+      const res = await axios.get(`${VITE_API_URL}/api/artworks`);
       setArtworks(Array.isArray(res.data.data) ? res.data.data : []);
     } catch (err) {
       console.log(err);
@@ -96,7 +96,7 @@ const ArtworksAdmin = () => {
   const handleDelete = async () => {
     if (!deleteTarget) return;
     try {
-      await axios.delete(`${VITE_VITE_API_URL}/api/artworks/${deleteTarget}`);
+      await axios.delete(`${VITE_API_URL}/api/artworks/${deleteTarget}`);
       toast.success("Artwork deleted!");
       setArtworks((prev) => prev.filter((a) => a._id !== deleteTarget));
     } catch (err) {

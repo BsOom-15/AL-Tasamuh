@@ -24,7 +24,7 @@ import CollectibleAdmin from "./CollectibleAdmin";
 import AboutAdmin from "./AboutAdmin";
 import MemoryAdmin from "./MemoryAdmin";
 import OpeningNightAdmin from "./OpeningNightAdmin";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState(
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
     }
     const headers = { Authorization: `Bearer ${token}` };
     axios
-      .get(`${VITE_VITE_API_URL}/api/admin/profile`, { headers })
+      .get(`${VITE_API_URL}/api/admin/profile`, { headers })
       .then((res) => setUser(res.data.admin))
       .catch((err) => {
         if (err.response?.status === 401) {
@@ -81,7 +81,7 @@ const AdminDashboard = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        `${VITE_VITE_API_URL}/api/admin/logout`,
+        `${VITE_API_URL}/api/admin/logout`,
         {},
         {
           headers: {
@@ -104,7 +104,7 @@ const AdminDashboard = () => {
     }
     try {
       await axios.put(
-        `${VITE_VITE_API_URL}/api/admin/change-password`,
+        `${VITE_API_URL}/api/admin/change-password`,
         {
           oldPassword: passwords.oldPassword,
           newPassword: passwords.newPassword,
@@ -134,7 +134,7 @@ const AdminDashboard = () => {
       if (avatarFile) formData.append("avatar", avatarFile);
 
       const res = await axios.put(
-        `${VITE_VITE_API_URL}/api/admin/update-profile`,
+        `${VITE_API_URL}/api/admin/update-profile`,
         formData,
         {
           headers: {

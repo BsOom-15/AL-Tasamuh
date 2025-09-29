@@ -5,7 +5,7 @@ import axios from "axios";
 import styled from "styled-components";
 import Modal from "../../Components/Modal/Modal"; // ✅ تأكدي المسار صحيح
 import Loader from "../../Components/Modal/Loaders";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const ArtistDetails = () => {
   const { id } = useParams();
@@ -17,7 +17,7 @@ const ArtistDetails = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get(`${VITE_VITE_API_URL}/api/artists/${id}`);
+        const res = await axios.get(`${VITE_API_URL}/api/artists/${id}`);
 
         setArtist(res.data);
       } catch (err) {

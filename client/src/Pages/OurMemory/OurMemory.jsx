@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Modal from "../../Components/Modal/Modal";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const OurMemory = () => {
   const [items, setItems] = useState([]);
@@ -13,7 +13,7 @@ const OurMemory = () => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const res = await axios.get(`${VITE_VITE_API_URL}/api/memory-items`);
+      const res = await axios.get(`${VITE_API_URL}/api/memory-items`);
       setItems(res.data.data || []);
     } catch (err) {
       console.error(err);
@@ -42,13 +42,13 @@ useEffect(() => {
 
   // ✅ Helper function to handle image URLs
  const getImageUrl = (img) => {
-  if (!img) return `${VITE_VITE_API_URL}/uploads/default-artwork.jpg`;
+  if (!img) return `${VITE_API_URL}/uploads/default-artwork.jpg`;
 
   const cleanPath = img.startsWith("uploads/") ? img : `uploads/${img}`;
 
   return img.startsWith("http")
     ? img
-    : `${VITE_VITE_API_URL}${cleanPath.replace(/^\/+/, "")}`;
+    : `${VITE_API_URL}${cleanPath.replace(/^\/+/, "")}`;
 };
 
 

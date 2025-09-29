@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Modal from "../../Components/Modal/Modal";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const Collectibles = () => {
   const [collectibles, setCollectibles] = useState([]);
@@ -12,15 +12,15 @@ const Collectibles = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const getImageUrl = (img) => {
-  if (!img) return "/default-collectible.jpg"; // أو `${VITE_VITE_API_URL}/uploads/default-collectible.jpg`
-  return img.startsWith("http") ? img : `${VITE_VITE_API_URL}/${img}`;
+  if (!img) return "/default-collectible.jpg"; // أو `${VITE_API_URL}/uploads/default-collectible.jpg`
+  return img.startsWith("http") ? img : `${VITE_API_URL}/${img}`;
 };
 
 
   useEffect(() => {
     const fetchCollectibles = async () => {
       try {
-        const url = `${VITE_VITE_API_URL}/api/collectibles?page=${page}&limit=12`;
+        const url = `${VITE_API_URL}/api/collectibles?page=${page}&limit=12`;
         const res = await axios.get(url);
         setCollectibles(res.data || []);
         // إذا أضفت pagination في الباك أضف هنا setPages(res.data.pages || 1);

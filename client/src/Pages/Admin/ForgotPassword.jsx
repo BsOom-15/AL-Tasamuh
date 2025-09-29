@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${VITE_VITE_API_URL}/api/admin/forgot-password`, { email });
+      const res = await axios.post(`${VITE_API_URL}/api/admin/forgot-password`, { email });
       setMessage(res.data.message);
     } catch (err) {
       setMessage(err.response?.data?.message || "Error sending reset link");

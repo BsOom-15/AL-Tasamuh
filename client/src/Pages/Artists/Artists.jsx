@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const Artists = () => {
   const [artists, setArtists] = useState([]);
@@ -12,7 +12,7 @@ const Artists = () => {
   useEffect(() => {
     const fetchArtists = async () => {
   try {
-    const res = await axios.get(`${VITE_VITE_API_URL}/api/artists`);
+    const res = await axios.get(`${VITE_API_URL}/api/artists`);
     setArtists(res.data);
   } catch (err) {
     console.error("fetch artists error:", err);
@@ -60,7 +60,7 @@ const Artists = () => {
       artist.artworks && artist.artworks[0]?.image
         ? artist.artworks[0].image.startsWith('http')
           ? artist.artworks[0].image
-          : `${VITE_VITE_API_URL}${artist.artworks[0].image.replace(/^\/+/, '')}`
+          : `${VITE_API_URL}${artist.artworks[0].image.replace(/^\/+/, '')}`
         : "/default-artist.jpg"
     })`,
               }}

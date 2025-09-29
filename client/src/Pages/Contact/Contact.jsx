@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { VITE_VITE_API_URL } from "../../../config";
+import { VITE_API_URL } from "../../../config";
 
 const ContactForm = () => {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -16,7 +16,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${VITE_VITE_API_URL}/api/contact`, form);
+      const res = await axios.post(`${VITE_API_URL}/api/contact`, form);
       if (res.data.success) {
         toast.success(" The Message Was Sent Successfully ✅");
         setForm({ name: "", email: "", subject: "", message: "" });

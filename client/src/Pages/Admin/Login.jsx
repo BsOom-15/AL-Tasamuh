@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { VITE_VITE_API_URL } from '../../../config';
+import { VITE_API_URL } from '../../../config';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${VITE_VITE_API_URL}/api/admin/login`, {
+      const res = await axios.post(`${VITE_API_URL}/api/admin/login`, {
   email,
   password,
 });

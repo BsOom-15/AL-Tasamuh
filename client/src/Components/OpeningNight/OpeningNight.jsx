@@ -5,14 +5,14 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation, Scrollbar } from 'swiper/modules';
 import axios from 'axios';
-import { VITE_VITE_API_URL } from '../../../config';
+import { VITE_API_URL } from '../../../config';
 
 const OpeningNight = () => {
   const [openingNights, setOpeningNights] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${VITE_VITE_API_URL}/api/opening-night?limit=3`)
+      .get(`${VITE_API_URL}/api/opening-night?limit=3`)
       .then(res => {
         console.log("Opening Night API Response:", res.data);
         setOpeningNights(res.data.data || []);
@@ -42,7 +42,7 @@ const OpeningNight = () => {
   src={
     image.startsWith("http")
       ? image
-      : `${VITE_VITE_API_URL}/uploads/${image}`
+      : `${VITE_API_URL}/uploads/${image}`
   }
   alt={`Slide ${index}`}
   className="slide-image"
