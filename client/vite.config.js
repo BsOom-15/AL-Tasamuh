@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { VITE_API_URL } from './config';
 
 export default defineConfig({
   define: {
@@ -18,11 +17,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: VITE_API_URL,
+        target: import.meta.env.VITE_API_URL || 'http://localhost:5000',
         changeOrigin: true,
       },
       '/uploads': {
-        target: VITE_API_URL,
+        target: import.meta.env.VITE_API_URL || 'http://localhost:5000',
         changeOrigin: true,
       },
     },
