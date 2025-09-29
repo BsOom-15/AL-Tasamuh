@@ -29,8 +29,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cors({
   origin: [
-    "http://localhost:5173"
-    // "https://your-netlify-app.netlify.app"
+    "https://68dadfbde4b50ca6ccb21486--al-tasamuh-art-gallary.netlify.app/"
   ],
   credentials: true
 }));
