@@ -29,10 +29,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cors({
   origin: [
-    "https://68dadfbde4b50ca6ccb21486--al-tasamuh-art-gallary.netlify.app/"
+    "https://68dadfbde4b50ca6ccb21486--al-tasamuh-art-gallary.netlify.app",
+    "http://localhost:5173" // لإختبار التطوير المحلي
   ],
   credentials: true
 }));
+
 
 app.use(helmet());
 app.use(express.json({ limit: "10mb" }));
