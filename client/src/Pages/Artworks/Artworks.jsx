@@ -69,14 +69,15 @@ setPages(res.data.pages || 1);
         {artworks.map((art, index) => (
           <div key={art._id} className="artwork-card">
             <div className="image-wrapper">
-              <img
+             <img
   src={
     art.image
-      ? art.image.startsWith("http")
-        ? art.image
-        : `${API_URL}${art.image.replace(/^\/+/, "")}`
+      ? `${API_URL}/uploads/${art.image.replace(/^\/+/, "")}`
       : "/default-artwork.jpg"
   }
+  alt={art.title}
+/>
+
   alt={art.title}
   className="artwork-image"
   onClick={() => handleOpenModal(art, index)}
