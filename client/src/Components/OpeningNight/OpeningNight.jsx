@@ -12,7 +12,7 @@ const OpeningNight = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/opening-night?limit=3`)
+      .get(`${import.meta.env.VITE_API_URL}/api/opening-night?limit=3`)
       .then(res => {
         console.log("Opening Night API Response:", res.data);
         setOpeningNights(res.data.data || []);
