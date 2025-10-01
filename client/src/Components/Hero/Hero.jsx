@@ -18,15 +18,15 @@ const Hero = () => {
 
   const API_URL = import.meta.env.VITE_API_URL;
 
-  // Helper function to get full HTTPS URL for hero images
-  const getHeroImage = (cover) => {
-    if (!cover) return "/fallback.jpg"; // صورة افتراضية لو مافي cover
-    if (cover.startsWith("http")) {
-      // تحويل أي http → https
-      return cover.replace("http://", "https://");
-    }
-    return `${API_URL}/uploads/${cover.replace(/^\/+/, "")}`;
-  };
+ const getHeroImage = (cover) => {
+  if (!cover) return "/fallback.jpg";
+  if (cover.startsWith("http://")) {
+    return cover.replace("http://", "https://"); // force https
+  }
+  if (cover.startsWith("https://")) return cover;
+  return `${API_URL}/uploads/${cover.replace(/^\/+/, "")}`;
+};
+
 
   useEffect(() => {
     const fetch = async () => {
