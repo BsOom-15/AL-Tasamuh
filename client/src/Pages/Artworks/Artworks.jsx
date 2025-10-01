@@ -50,7 +50,6 @@ setPages(res.data.pages || 1);
     setCurrentIndex(prevIndex);
     setSelectedArtwork(artworks[prevIndex]);
   };
-  const API_URL = import.meta.env.VITE_API_URL;
 
   const getImageUrl = (imgPath) => {
   if (!imgPath) return "/default-artwork.jpg"; // صورة افتراضية
