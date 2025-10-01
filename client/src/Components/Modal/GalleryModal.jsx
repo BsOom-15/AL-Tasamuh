@@ -21,7 +21,19 @@ const Item = styled.label`
 `;
 const NoFound = styled.p`color:#666;`;
 
-const getImage = (it) => it?.image || it?.imageUrl || it?.cover || "https://via.placeholder.com/120";
+const API_URL = import.meta.env.VITE_API_URL;
+
+const getImage = (it) => {
+  let img = it?.image || it?.imageUrl || it?.cover || "https://via.placeholder.com/120";
+
+  // لو الرابط يبدأ بـ http, حوله لـ https
+  if (img.startsWith("http://")) img = img.replace("http://", "https://");
+
+  // لو الرابط محلي (uploads/...) ضيف API_URL
+  if (!img.startsWith("http")) img = `${API_URL}/${img.replace(/^\/+/, "")}`;
+
+  return img;
+};
 const getTitle = (it) => it?.title || it?.name || "Untitled";
 const getSubtitle = (it) => it?.artist?.name || it?.subtitle || "";
 
