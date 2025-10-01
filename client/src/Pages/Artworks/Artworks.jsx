@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Modal from "../../Components/Modal/Modal";
 
 const Artworks = () => {
-
   const API_URL = import.meta.env.VITE_API_URL;
   const [artworks, setArtworks] = useState([]);
   const [page, setPage] = useState(1);
@@ -17,14 +16,13 @@ const Artworks = () => {
     const fetchArtworks = async () => {
       try {
         const url =
-  filter === "all"
-    ? `${API_URL}/api/artworks?page=${page}&limit=12`
-    : `${API_URL}/api/artworks?page=${page}&limit=12&status=${filter}`;
+          filter === "all"
+            ? `${API_URL}/api/artworks?page=${page}&limit=12`
+            : `${API_URL}/api/artworks?page=${page}&limit=12&status=${filter}`;
 
-const res = await axios.get(url);
-setArtworks(res.data.data || []);
-setPages(res.data.pages || 1);
-
+        const res = await axios.get(url);
+        setArtworks(res.data.data || []);
+        setPages(res.data.pages || 1);
       } catch (err) {
         console.error("Error fetching artworks:", err);
       }
@@ -52,13 +50,12 @@ setPages(res.data.pages || 1);
   };
 
   const getImageUrl = (imgPath) => {
-  if (!imgPath) return "/default-artwork.jpg"; // صورة افتراضية
-  let img = Array.isArray(imgPath) ? imgPath[0] : imgPath; // إذا array نأخذ أول صورة
-  if (img.startsWith("http://")) img = img.replace("http://", "https://"); // force https
-  if (!img.startsWith("http")) img = `${API_URL}/uploads/${img.replace(/^\/+/, "")}`;
-  return img;
-};
-
+    if (!imgPath) return "/default-artwork.jpg";
+    let img = Array.isArray(imgPath) ? imgPath[0] : imgPath;
+    if (img.startsWith("http://")) img = img.replace("http://", "https://");
+    if (!img.startsWith("http")) img = `${API_URL}/uploads/${img.replace(/^\/+/, "")}`;
+    return img;
+  };
 
   return (
     <Wrapper>
@@ -78,19 +75,12 @@ setPages(res.data.pages || 1);
         {artworks.map((art, index) => (
           <div key={art._id} className="artwork-card">
             <div className="image-wrapper">
-             <img
-               src={getImageUrl(art.image)}
-               alt={art.title || "Artwork"}
-               className="artwork-image"
-               onClick={() => handleOpenModal(art, index)}
+              <img
+                src={getImageUrl(art.image)}
+                alt={art.title || "Artwork"}
+                className="artwork-image"
+                onClick={() => handleOpenModal(art, index)}
               />
-
-
-  alt={art.title}
-  className="artwork-image"
-  onClick={() => handleOpenModal(art, index)}
-/>
-
             </div>
             <p className="artwork-title">{art.title || "Untitled"}</p>
             <p className="artist-name">
@@ -131,6 +121,7 @@ setPages(res.data.pages || 1);
 
 const Wrapper = styled.div`
   padding: 60px 80px;
+
   h1 {
     text-align: center;
     font-size: 34px;
@@ -142,6 +133,7 @@ const Wrapper = styled.div`
     text-align: center;
     margin-bottom: 25px;
   }
+
   select {
     margin-left: 10px;
     padding: 6px 12px;
@@ -154,7 +146,7 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    justify-items: center; /* 🔥 يخلي الكروت في النص */
+    justify-items: center;
   }
 
   .artwork-card {
@@ -198,6 +190,7 @@ const Wrapper = styled.div`
     color: #333;
     font-size: 16px;
   }
+
   .artist-name {
     font-size: 14px;
     color: #666;
@@ -253,6 +246,7 @@ const Wrapper = styled.div`
       grid-template-columns: repeat(2, 1fr);
     }
   }
+
   @media (max-width: 600px) {
     .artworks-grid {
       grid-template-columns: 1fr;
