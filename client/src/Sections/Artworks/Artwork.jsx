@@ -15,11 +15,18 @@ const Artwork = () => {
 
   // 🔑 helper: يبني الرابط الصحيح للصورة
   const getImageUrl = (imgPath) => {
-    if (!imgPath) return "/default-artwork.jpg";
-    return imgPath.startsWith("http")
-      ? imgPath
-      : `${API_URL}/${imgPath.startsWith("uploads/") ? imgPath : "uploads/" + imgPath}`;
-  };
+  if (!imgPath) return "/default-artwork.jpg";
+
+  let url = imgPath.startsWith("http")
+    ? imgPath
+    : `${API_URL}/${imgPath.startsWith("uploads/") ? imgPath : "uploads/" + imgPath}`;
+
+  // إذا الرابط http, حوّله إلى https
+  if (url.startsWith("http://")) url = url.replace("http://", "https://");
+
+  return url;
+};
+
 
   // Shuffle function (للعرض العشوائي)
   const shuffleArray = (array) => {
