@@ -50,6 +50,16 @@ setPages(res.data.pages || 1);
     setCurrentIndex(prevIndex);
     setSelectedArtwork(artworks[prevIndex]);
   };
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  const getImageUrl = (imgPath) => {
+  if (!imgPath) return "/default-artwork.jpg"; // صورة افتراضية
+  let img = Array.isArray(imgPath) ? imgPath[0] : imgPath; // إذا array نأخذ أول صورة
+  if (img.startsWith("http://")) img = img.replace("http://", "https://"); // force https
+  if (!img.startsWith("http")) img = `${API_URL}/uploads/${img.replace(/^\/+/, "")}`;
+  return img;
+};
+
 
   return (
     <Wrapper>
@@ -70,13 +80,12 @@ setPages(res.data.pages || 1);
           <div key={art._id} className="artwork-card">
             <div className="image-wrapper">
              <img
-  src={
-    art.image
-      ? `${API_URL}/uploads/${art.image.replace(/^\/+/, "")}`
-      : "/default-artwork.jpg"
-  }
-  alt={art.title}
-/>
+               src={getImageUrl(art.image)}
+               alt={art.title || "Artwork"}
+               className="artwork-image"
+               onClick={() => handleOpenModal(art, index)}
+              />
+
 
   alt={art.title}
   className="artwork-image"
