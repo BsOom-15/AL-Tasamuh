@@ -30,6 +30,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173', // للتطوير المحلي
+    'https://al-tasamuh.netlify.app',
     'https://al-tasamuh-art-gallary.netlify.app' // الفرونت على Netlify
   ],
   credentials: true
