@@ -16,6 +16,18 @@ const Hero = () => {
   const navigate = useNavigate();
   const intervalRef = useRef(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  // Helper function to get full HTTPS URL for hero images
+  const getHeroImage = (cover) => {
+    if (!cover) return "/fallback.jpg"; // صورة افتراضية لو مافي cover
+    if (cover.startsWith("http")) {
+      // تحويل أي http → https
+      return cover.replace("http://", "https://");
+    }
+    return `${API_URL}/uploads/${cover.replace(/^\/+/, "")}`;
+  };
+
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -63,11 +75,7 @@ const Hero = () => {
                 key={String(item._id) + "-" + i}
                 className="hero-item"
                 style={{
-                  backgroundImage: item.cover
-                    ? item.cover.startsWith("http")
-                      ? `url(${item.cover})`
-                      : `url(/uploads/${item.cover})`
-                    : "url(/fallback.jpg)",
+                  backgroundImage: `url(${getHeroImage(item.cover)})`,
                 }}
               >
                 <div className="hero-content">
