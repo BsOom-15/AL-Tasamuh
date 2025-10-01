@@ -6,7 +6,8 @@ import { LanguageContext } from "../../context/LanguageContext";
 import Artwork from "../../Sections/Artworks/Artwork";
 import ArtistSection from "../ArtistSection/ArtistSection";
 import OpeningNight from "../OpeningNight/OpeningNight";
-import { getRandomExhibitions } from "../../utils/api";
+import { getExhibitions } from "../../utils/api";
+
 
 const Hero = () => {
   const { t } = useContext(LanguageContext);
@@ -28,18 +29,19 @@ const Hero = () => {
 };
 
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const res = await getExhibitions({ limit: 6 });
-        setItems(Array.isArray(res.data.data) ? res.data.data : []);
-        setCurrent(0);
-      } catch (err) {
-        console.error("Hero fetch error:", err);
-      }
-    };
-    fetch();
-  }, []);
+ useEffect(() => {
+  const fetch = async () => {
+    try {
+      const res = await getExhibitions({ limit: 6 });
+      setItems(Array.isArray(res.data.data) ? res.data.data : []);
+      setCurrent(0);
+    } catch (err) {
+      console.error("Hero fetch error:", err);
+    }
+  };
+  fetch();
+}, []);
+
 
   useEffect(() => {
     if (paused || items.length === 0) return;
