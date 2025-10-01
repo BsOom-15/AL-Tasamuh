@@ -31,7 +31,7 @@ const Hero = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await getRandomExhibitions(6);
+        const res = await getExhibitions({ limit: 6 });
         setItems(Array.isArray(res.data.data) ? res.data.data : []);
         setCurrent(0);
       } catch (err) {
